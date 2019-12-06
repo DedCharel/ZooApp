@@ -19,17 +19,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //load animal
         listOfAnimal.add(
-            Animal("Baboon", "Baboon live in big place with tree", R.drawable.baboon))
+            Animal("Baboon", "Baboon live in big place with tree", R.drawable.baboon, false))
         listOfAnimal.add(
-            Animal("Bulldog", "Bulldog live in big place with tree", R.drawable.bulldog))
+            Animal("Bulldog", "Bulldog live in big place with tree", R.drawable.bulldog, true))
         listOfAnimal.add(
-            Animal("Panda", "Panda live in big place with tree", R.drawable.panda))
+            Animal("Panda", "Panda live in big place with tree", R.drawable.panda, false))
         listOfAnimal.add(
-            Animal("Swallow", "Swallow live in big place with tree", R.drawable.swallow_bird))
+            Animal("Swallow", "Swallow live in big place with tree", R.drawable.swallow_bird, false))
         listOfAnimal.add(
-            Animal("Tiger", "Tiger live in big place with tree", R.drawable.white_tiger))
+            Animal("Tiger", "Tiger live in big place with tree", R.drawable.white_tiger, true))
         listOfAnimal.add(
-            Animal("Zebra", "Zebra live in big place with tree", R.drawable.zebra))
+            Animal("Zebra", "Zebra live in big place with tree", R.drawable.zebra, false))
 
         adapter = AnimalsAdapter(this, listOfAnimal)
         lvAnimal.adapter = adapter
@@ -46,7 +46,11 @@ class MainActivity : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val animal = listOfAnimals[position]
             var inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            var myView = inflater.inflate(R.layout.animal_ticket, null)
+            var myView:View?=null
+            if (animal.isKiller == true) {
+             myView = inflater.inflate(R.layout.animal_killer_ticket, null)}
+            else{
+            myView = inflater.inflate(R.layout.animal_ticket, null)}
             myView.tvName.text = animal.name!!
             myView.tvDescription.text = animal.des!!
             myView.ivAnimal.setImageResource(animal.image!!)
