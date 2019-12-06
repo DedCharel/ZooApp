@@ -1,6 +1,7 @@
 package ru.nvg_soft.zooapp
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -53,7 +54,14 @@ class MainActivity : AppCompatActivity() {
             myView = inflater.inflate(R.layout.animal_ticket, null)}
             myView.tvName.text = animal.name!!
             myView.tvDescription.text = animal.des!!
-            myView.ivAnimal.setImageResource(animal.image!!)
+            myView.ivAnimalImage.setImageResource(animal.image!!)
+            myView.ivAnimalImage.setOnClickListener{
+                val intent = Intent(context, AnimalInfo::class.java)
+                intent.putExtra("name", animal.name!!)
+                intent.putExtra("des", animal.des!!)
+                intent.putExtra("image", animal.image!!)
+                context!!.startActivity(intent)
+            }
             return myView
 
         }
