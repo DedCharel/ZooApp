@@ -36,6 +36,16 @@ class MainActivity : AppCompatActivity() {
         lvAnimal.adapter = adapter
     }
 
+    fun delete(index:Int){
+        listOfAnimal.removeAt(index)
+        adapter!!.notifyDataSetChanged()
+    }
+
+    fun add(index: Int){
+        listOfAnimal.add(listOfAnimal[index])  //copy element
+        adapter!!.notifyDataSetChanged()
+    }
+
     class AnimalsAdapter:BaseAdapter{
         var listOfAnimals = ArrayList<Animal>()
         var context:Context? = null
